@@ -10,7 +10,7 @@ var data = File.ReadAllLines("data.csv");
 List<Semester> semesters = ReadInput(data);
 
 int targetWidth = semesters.Count * SEMESTER_WIDTH;
-int targetHeight = semesters.Max(m => m.Modules.Count) * MODULE_HEIGHT;
+int targetHeight = semesters.Max(m => m.Modules.Count) * MODULE_HEIGHT+MODULE_HEIGHT;
 
 using (Bitmap newImage = new(targetWidth, targetHeight))
 {
@@ -21,17 +21,46 @@ using (Bitmap newImage = new(targetWidth, targetHeight))
         int index = 0;
         foreach (var semester in semesters)
         {
-            DrawSemester(semester, index, graphics);
+            DrawSemester(semester, index*SEMESTER_WIDTH, 0, graphics);
             index++;
         }
     }
     newImage.Save("data.jpg", ImageFormat.Jpeg);
 }
 
-void DrawSemester(Semester semester, int index, Graphics graphics)
+void DrawSemester(Semester semester, int xOffset, int yOffset, Graphics graphics)
 {
-    Rectangle semesterFrame = new Rectangle(index*SEMESTER_WIDTH, 0, SEMESTER_WIDTH, targetWidth);
-    graphics.DrawRectangle(new Pen(Color.Red), semesterFrame);
+    Rectangle semesterFrame = new Rectangle(xOffset, yOffset, SEMESTER_WIDTH, targetWidth);
+    graphics.FillRectangle(new SolidBrush(Color.Beige), semesterFrame);
+    graphics.DrawString(semester.Name, new Font("Arial", 16), new SolidBrush(Color.Black), semesterFrame.X, semesterFrame.Y);
+    int moduleIndex = 1;
+    foreach (var module in semester.Modules)
+    {
+        DrawModule(module, xOffset, moduleIndex*MODULE_HEIGHT, graphics);
+        moduleIndex++;
+    }
+}
+
+void DrawModule(Module module, int xOffset, int yOffset, Graphics graphics)
+{
+    Rectangle moduleFrame = new Rectangle(xOffset, yOffset, SEMESTER_WIDTH, MODULE_HEIGHT);
+    graphics.FillRectangle(new SolidBrush(ColorFromHexString(module.HexColor ?? "#ffffff")), moduleFrame);
+    graphics.DrawString(module.Name, new Font("Arial", 14), new SolidBrush(Color.Black), moduleFrame.X, moduleFrame.Y);
+    if (module.Grade != null)
+    {
+        graphics.DrawString(module.Grade.Value.ToString(CultureInfo.InvariantCulture), new Font("Arial", 12), new SolidBrush(Color.Black), moduleFrame.X, moduleFrame.Y + moduleFrame.Height - 20);
+    }
+    else
+    {
+        graphics.DrawString("-", new Font("Arial", 12), new SolidBrush(Color.Black), moduleFrame.X, moduleFrame.Y + moduleFrame.Height - 20);
+    }
+}
+
+static Color ColorFromHexString(string hex)
+{
+    var conv = new ColorConverter();
+    var color = ((Color?)conv.ConvertFromString(hex)) ?? Color.White;
+    return color;
 }
 
 static List<Semester> ReadInput(string[] data)
