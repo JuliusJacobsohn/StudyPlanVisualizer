@@ -6,7 +6,7 @@ using System.Globalization;
 const int SEMESTER_WIDTH = 300;
 const int MODULE_HEIGHT = 50;
 
-var data = File.ReadAllLines("data.csv");
+var data = File.ReadAllLines("data.csv").Skip(1);
 List<Semester> semesters = ReadInput(data);
 
 int targetWidth = semesters.Count * SEMESTER_WIDTH;

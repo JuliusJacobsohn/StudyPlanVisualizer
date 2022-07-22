@@ -1,6 +1,10 @@
-﻿Semester 1;DAP 1;#ff0000;1.0
-Semester 1;DAP 2;#ff0000;1.0
-Semester 2;Mafi 1;#ff0000;1.0
-Semester 2;DAP 1;#ff1200;1.0
-Semester 2;DAP 2;#ff1200;2.3
-Semester 3;Bachelorarbeit;#ff1212;1.3
+﻿Semester;Modulname;WirdBenotet;Note;Credits;Farbe
+Vorher;Ringvorlesung Elektrotechnik;false;;0.0;#FFCCCB
+Vorher;Forschungskolloquium;#FFCCCB;0.0
+Vorher;IT Recht;#FFBA99;0.0
+Vorher;Industrial Data Science 1;#CDFFFE;2.7
+Semester 1;Verlässliche Systemsoftware;#CDFFFE;1.0
+Semester 1;Industrial Data Science 2;#CDFFFE;2.0
+Semester 1;Japanisch A1.1;#FFCCCB;1.0
+Semester 1;Russisch A1;#FFCCCB;1.0
+Semester 2;Graphische Datenverarbeitung;#32CCFE;1.7
