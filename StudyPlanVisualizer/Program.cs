@@ -17,19 +17,21 @@ using (Bitmap newImage = new(targetWidth, targetHeight))
     // Crop and resize the image.
     using (Graphics graphics = Graphics.FromImage(newImage))
     {
-        var groups = data.GroupBy(d => d.Split(";")[0]);
-        foreach (var group in groups)
+        graphics.FillRectangle(Brushes.White, 0, 0, targetWidth, targetHeight);
+        int index = 0;
+        foreach (var semester in semesters)
         {
-            DrawGroup(group, graphics);
+            DrawSemester(semester, index, graphics);
+            index++;
         }
     }
     newImage.Save("data.jpg", ImageFormat.Jpeg);
 }
 
-static void DrawGroup(IGrouping<string, string> group, Graphics graphics)
+void DrawSemester(Semester semester, int index, Graphics graphics)
 {
-    Rectangle destination = new Rectangle(0, 0, 200, 120);
-    graphics.DrawRectangle(new Pen(Color.Red), destination);
+    Rectangle semesterFrame = new Rectangle(index*SEMESTER_WIDTH, 0, SEMESTER_WIDTH, targetWidth);
+    graphics.DrawRectangle(new Pen(Color.Red), semesterFrame);
 }
 
 static List<Semester> ReadInput(string[] data)
