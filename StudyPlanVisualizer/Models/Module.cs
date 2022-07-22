@@ -10,6 +10,10 @@ namespace StudyPlanVisualizer.Models
     public class Module
     {
         public string Name { get; set; } = "Unknown";
+        public string TypeName { get; set; } = "";
+        public bool IsExtraModule { get; set; } = false;
+        public bool SpansTwoSemesters { get; set; } = false;
+        public bool IsGraded { get; set; } = true;
         public double Credits { get; set; }
         public double? Grade { get; set; }
         public string? HexColor { get; set; }
