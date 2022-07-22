@@ -44,7 +44,7 @@ void DrawSemester(Semester semester, int xOffset, int yOffset, Graphics graphics
 void DrawModule(Module module, int xOffset, int yOffset, Graphics graphics)
 {
     Rectangle moduleFrame = new Rectangle(xOffset, yOffset, SEMESTER_WIDTH, MODULE_HEIGHT);
-    graphics.FillRectangle(new SolidBrush(ColorFromHexString(module.HexColor ?? "#ffffff")), moduleFrame);
+    graphics.FillRectangle(new SolidBrush(module.Color), moduleFrame);
     graphics.DrawString(module.Name, new Font("Arial", 14), new SolidBrush(Color.Black), moduleFrame.X, moduleFrame.Y);
     if (module.Grade != null)
     {
@@ -54,13 +54,6 @@ void DrawModule(Module module, int xOffset, int yOffset, Graphics graphics)
     {
         graphics.DrawString("-", new Font("Arial", 12), new SolidBrush(Color.Black), moduleFrame.X, moduleFrame.Y + moduleFrame.Height - 20);
     }
-}
-
-static Color ColorFromHexString(string hex)
-{
-    var conv = new ColorConverter();
-    var color = ((Color?)conv.ConvertFromString(hex)) ?? Color.White;
-    return color;
 }
 
 static List<Semester> ReadInput(string[] data)
