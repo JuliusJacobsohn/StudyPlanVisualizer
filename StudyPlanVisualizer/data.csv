@@ -1,5 +1,7 @@
 ﻿Semester;ModuleName;ModuleTypeName;IsExtraModule;SpansTwoSemesters;IsGraded;Grade;Credits;Color
 WiSe 2013;DAP 1;Basismodul;false;false;true;2.0;12.0;#32CCFE
+WiSe 2013;Rechnerstrukturen;Basismodul;false;false;true;4.0;8.0;#32CCFE
+SoSe 2015;DAP 2;Basismodul;false;false;true;3.0;12.0;#32CCFE
 WiSe 2019;Ringvorlesung Elektrotechnik;Studium Fundamentale;false;false;false;0.0;2.0;#FFCCCB
 WiSe 2019;Forschungskolloquium;Studium Fundamentale;false;false;false;0.0;2.0;#FFCCCB
 WiSe 2019;IT Recht;Informatik im Kontext;false;false;false;0.0;4.0;#FFBA99
