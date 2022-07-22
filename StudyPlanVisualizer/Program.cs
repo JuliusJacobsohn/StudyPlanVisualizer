@@ -26,6 +26,22 @@ using (Bitmap newImage = new(targetWidth, targetHeight))
             DrawSemester(semester, index * SEMESTER_WIDTH, 0, graphics);
             index++;
         }
+        index = 0;
+        foreach(var semester in semesters)
+        {
+            bool skipOneModule = false;
+            if (index > 0)
+            {
+                skipOneModule = semesters.ElementAt(index - 1).Modules.Any(m => m.SpansTwoSemesters);
+            }
+            int moduleIndex = skipOneModule ? 2 : 1;
+            foreach (var module in semester.Modules)
+            {
+                DrawModule(module, index * SEMESTER_WIDTH, moduleIndex * MODULE_HEIGHT, graphics);
+                moduleIndex++;
+            }
+            index++;
+        }
     }
     newImage.Save("data.png", ImageFormat.Png);
     var fileInfo = new FileInfo("data.png");
@@ -37,18 +53,13 @@ void DrawSemester(Semester semester, int xOffset, int yOffset, Graphics graphics
     Rectangle semesterFrame = new Rectangle(xOffset, yOffset, SEMESTER_WIDTH, targetWidth);
     graphics.FillRectangle(new SolidBrush(Color.Beige), semesterFrame);
     graphics.DrawString(semester.Name, new Font("Arial", 20, FontStyle.Bold), new SolidBrush(Color.Black), semesterFrame.X + 10, semesterFrame.Y + 10);
-    int moduleIndex = 1;
-    foreach (var module in semester.Modules)
-    {
-        DrawModule(module, xOffset, moduleIndex * MODULE_HEIGHT, graphics);
-        moduleIndex++;
-    }
 }
 
 void DrawModule(Module module, int xOffset, int yOffset, Graphics graphics)
 {
     //Create the frame of the module
-    Rectangle moduleFrame = new Rectangle(xOffset + MODULE_FRAME_SIZE, yOffset + MODULE_FRAME_SIZE, SEMESTER_WIDTH - MODULE_FRAME_SIZE * 2, MODULE_HEIGHT - MODULE_FRAME_SIZE * 2);
+    int widthModifier = module.SpansTwoSemesters ? 2 : 1;
+    Rectangle moduleFrame = new Rectangle(xOffset + MODULE_FRAME_SIZE, yOffset + MODULE_FRAME_SIZE, (widthModifier * SEMESTER_WIDTH) - MODULE_FRAME_SIZE * 2, MODULE_HEIGHT - MODULE_FRAME_SIZE * 2);
     graphics.FillRectangle(new SolidBrush(module.Color), moduleFrame);
 
     //Draw the module type
@@ -58,11 +69,11 @@ void DrawModule(Module module, int xOffset, int yOffset, Graphics graphics)
     }
 
     //Draw the module name
-    graphics.DrawString(module.Name, new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), moduleFrame.X + 10, moduleFrame.Y+moduleFrame.Height - 40);
+    graphics.DrawString(module.Name, new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), moduleFrame.X + 10, moduleFrame.Y + moduleFrame.Height - 40);
 
     //Draw the CP
     graphics.DrawString("CP: " + module.Credits.ToString("0.0", CultureInfo.InvariantCulture), new Font("Arial", 12), new SolidBrush(Color.Black), moduleFrame.X + moduleFrame.Width - 80, moduleFrame.Y + 10);
-    
+
     if (module.IsGraded)
     {
         //Draw the grade
