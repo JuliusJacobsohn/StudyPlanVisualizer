@@ -1,9 +1,10 @@
 ﻿Semester;ModuleName;ModuleTypeName;IsExtraModule;SpansTwoSemesters;IsGraded;Grade;Credits;Color
 WiSe 2013;DAP 1;Basismodul;false;false;true;2.0;12.0;#32CCFE
-Vorher;Ringvorlesung Elektrotechnik;Studium Fundamentale;false;false;false;0.0;2.0;#FFCCCB
-Vorher;Forschungskolloquium;Studium Fundamentale;false;false;false;0.0;2.0;#FFCCCB
-Vorher;IT Recht;Informatik im Kontext;false;false;false;0.0;4.0;#FFBA99
-Vorher;Industrial Data Science 1;Vertiefungsmodul;false;false;true;2.7;6.0;#CDFFFE
+WiSe 2019;Ringvorlesung Elektrotechnik;Studium Fundamentale;false;false;false;0.0;2.0;#FFCCCB
+WiSe 2019;Forschungskolloquium;Studium Fundamentale;false;false;false;0.0;2.0;#FFCCCB
+WiSe 2019;IT Recht;Informatik im Kontext;false;false;false;0.0;4.0;#FFBA99
+SoSe 2020;Praktische Optimierung;Basismodul;false;false;false;;8.0;#CDFFFE
+WiSe 2020;Industrial Data Science 1;Vertiefungsmodul;false;false;true;2.7;6.0;#CDFFFE
 SoSe 2021;Industrial Data Science 2;Vertiefungsmodul;false;false;true;2.0;6.0;#CDFFFE
 SoSe 2021;Verlässliche Systemsoftware;Vertiefungsmodul;false;false;true;1.0;6.0;#CDFFFE
 SoSe 2021;Japanisch A1.1;Sprachkurs;true;false;true;1.0;3.0;#FFCCCB
