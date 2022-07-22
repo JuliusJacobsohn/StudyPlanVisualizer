@@ -1,10 +1,2 @@
-﻿Semester;Modulname;IsGraded;Grade;Credits;Color
-Vorher;Ringvorlesung Elektrotechnik;false;;0.0;#FFCCCB
-Vorher;Forschungskolloquium;#FFCCCB;0.0
-Vorher;IT Recht;#FFBA99;0.0
-Vorher;Industrial Data Science 1;#CDFFFE;2.7
-Semester 1;Verlässliche Systemsoftware;#CDFFFE;1.0
-Semester 1;Industrial Data Science 2;#CDFFFE;2.0
-Semester 1;Japanisch A1.1;#FFCCCB;1.0
-Semester 1;Russisch A1;#FFCCCB;1.0
-Semester 2;Graphische Datenverarbeitung;#32CCFE;1.7
+﻿Semester;ModuleName;ModuleTypeName;IsExtraModule;SpansTwoSemesters;IsGraded;Grade;Credits;Color
+WiSe 2013;DAP 1;Basismodul;false;false;true;2.0;12.0;#32CCFE

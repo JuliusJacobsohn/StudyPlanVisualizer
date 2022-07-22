@@ -1,16 +1,18 @@
 ﻿using StudyPlanVisualizer.Models;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 
-const int SEMESTER_WIDTH = 300;
-const int MODULE_HEIGHT = 50;
+const int SEMESTER_WIDTH = 500;
+const int MODULE_HEIGHT = 100;
+const int MODULE_FRAME_SIZE = 4;
 
 var data = File.ReadAllLines("data.csv").Skip(1).ToArray();
 List<Semester> semesters = ReadInput(data);
 
 int targetWidth = semesters.Count * SEMESTER_WIDTH;
-int targetHeight = semesters.Max(m => m.Modules.Count) * MODULE_HEIGHT+MODULE_HEIGHT;
+int targetHeight = semesters.Max(m => m.Modules.Count) * MODULE_HEIGHT + MODULE_HEIGHT;
 
 using (Bitmap newImage = new(targetWidth, targetHeight))
 {
@@ -21,38 +23,64 @@ using (Bitmap newImage = new(targetWidth, targetHeight))
         int index = 0;
         foreach (var semester in semesters)
         {
-            DrawSemester(semester, index*SEMESTER_WIDTH, 0, graphics);
+            DrawSemester(semester, index * SEMESTER_WIDTH, 0, graphics);
             index++;
         }
     }
-    newImage.Save("data.jpg", ImageFormat.Jpeg);
+    newImage.Save("data.png", ImageFormat.Png);
+    var fileInfo = new FileInfo("data.png");
+    Process.Start("explorer.exe", fileInfo.FullName);
 }
 
 void DrawSemester(Semester semester, int xOffset, int yOffset, Graphics graphics)
 {
     Rectangle semesterFrame = new Rectangle(xOffset, yOffset, SEMESTER_WIDTH, targetWidth);
     graphics.FillRectangle(new SolidBrush(Color.Beige), semesterFrame);
-    graphics.DrawString(semester.Name, new Font("Arial", 16), new SolidBrush(Color.Black), semesterFrame.X, semesterFrame.Y);
+    graphics.DrawString(semester.Name, new Font("Arial", 20, FontStyle.Bold), new SolidBrush(Color.Black), semesterFrame.X + 10, semesterFrame.Y + 10);
     int moduleIndex = 1;
     foreach (var module in semester.Modules)
     {
-        DrawModule(module, xOffset, moduleIndex*MODULE_HEIGHT, graphics);
+        DrawModule(module, xOffset, moduleIndex * MODULE_HEIGHT, graphics);
         moduleIndex++;
     }
 }
 
 void DrawModule(Module module, int xOffset, int yOffset, Graphics graphics)
 {
-    Rectangle moduleFrame = new Rectangle(xOffset, yOffset, SEMESTER_WIDTH, MODULE_HEIGHT);
+    //Create the frame of the module
+    Rectangle moduleFrame = new Rectangle(xOffset + MODULE_FRAME_SIZE, yOffset + MODULE_FRAME_SIZE, SEMESTER_WIDTH - MODULE_FRAME_SIZE * 2, MODULE_HEIGHT - MODULE_FRAME_SIZE * 2);
     graphics.FillRectangle(new SolidBrush(module.Color), moduleFrame);
-    graphics.DrawString(module.Name, new Font("Arial", 14), new SolidBrush(Color.Black), moduleFrame.X, moduleFrame.Y);
-    if (module.Grade != null)
+
+    //Draw the module type
+    if (!string.IsNullOrEmpty(module.TypeName))
     {
-        graphics.DrawString(module.Grade.Value.ToString(CultureInfo.InvariantCulture), new Font("Arial", 12), new SolidBrush(Color.Black), moduleFrame.X, moduleFrame.Y + moduleFrame.Height - 20);
+        graphics.DrawString(module.TypeName, new Font("Arial", 16, FontStyle.Underline), new SolidBrush(Color.Black), moduleFrame.X + 10, moduleFrame.Y + 10);
+    }
+
+    //Draw the module name
+    graphics.DrawString(module.Name, new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), moduleFrame.X + 10, moduleFrame.Y+moduleFrame.Height - 40);
+
+    //Draw the CP
+    graphics.DrawString("CP: " + module.Credits.ToString("0.0", CultureInfo.InvariantCulture), new Font("Arial", 12), new SolidBrush(Color.Black), moduleFrame.X + moduleFrame.Width - 80, moduleFrame.Y + 10);
+    
+    if (module.IsGraded)
+    {
+        //Draw the grade
+        if (module.Grade != null)
+        {
+            //Already received a grade
+            graphics.DrawString("Grade: " + module.Grade.Value.ToString("0.0", CultureInfo.InvariantCulture), new Font("Arial", 12), new SolidBrush(Color.Black), moduleFrame.X + moduleFrame.Width - 80, moduleFrame.Y + moduleFrame.Height - 30);
+        }
+        else
+        {
+            //No grade yet
+            graphics.DrawString("Grade: -", new Font("Arial", 12), new SolidBrush(Color.Black), moduleFrame.X + moduleFrame.Width - 80, moduleFrame.Y + moduleFrame.Height - 30);
+        }
     }
     else
     {
-        graphics.DrawString("-", new Font("Arial", 12), new SolidBrush(Color.Black), moduleFrame.X, moduleFrame.Y + moduleFrame.Height - 20);
+        //Ungraded
+        graphics.DrawString("Ungraded", new Font("Arial", 12), new SolidBrush(Color.Black), moduleFrame.X + moduleFrame.Width - 80, moduleFrame.Y + moduleFrame.Height - 30);
     }
 }
 
@@ -72,8 +100,13 @@ static List<Semester> ReadInput(string[] data)
         Module newModule = new Module
         {
             Name = parts[1],
-            HexColor = parts[2],
-            Grade = double.Parse(parts[3], CultureInfo.InvariantCulture),
+            TypeName = parts[2],
+            IsExtraModule = parts[3] != string.Empty ? bool.Parse(parts[3]) : false,
+            SpansTwoSemesters = parts[4] != string.Empty ? bool.Parse(parts[4]) : false,
+            IsGraded = parts[5] != string.Empty ? bool.Parse(parts[5]) : true,
+            Grade = parts[6] != string.Empty ? double.Parse(parts[6], CultureInfo.InvariantCulture) : null,
+            Credits = double.Parse(parts[7], CultureInfo.InvariantCulture),
+            HexColor = parts[8],
         };
         existingSemester.Modules.Add(newModule);
     }
