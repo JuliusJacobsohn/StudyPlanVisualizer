@@ -1,4 +1,4 @@
-﻿Semester;Modulname;WirdBenotet;Note;Credits;Farbe
+﻿Semester;Modulname;IsGraded;Grade;Credits;Color
 Vorher;Ringvorlesung Elektrotechnik;false;;0.0;#FFCCCB
 Vorher;Forschungskolloquium;#FFCCCB;0.0
 Vorher;IT Recht;#FFBA99;0.0
