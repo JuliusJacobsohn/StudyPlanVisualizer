@@ -4,18 +4,18 @@ Vorher;Ringvorlesung Elektrotechnik;Studium Fundamentale;false;false;false;0.0;2
 Vorher;Forschungskolloquium;Studium Fundamentale;false;false;false;0.0;2.0;#FFCCCB
 Vorher;IT Recht;Informatik im Kontext;false;false;false;0.0;4.0;#FFBA99
 Vorher;Industrial Data Science 1;Vertiefungsmodul;false;false;true;2.7;6.0;#CDFFFE
-Semester 1;Industrial Data Science 2;Vertiefungsmodul;false;false;true;2.0;6.0;#CDFFFE
-Semester 1;Verlässliche Systemsoftware;Vertiefungsmodul;false;false;true;1.0;6.0;#CDFFFE
-Semester 1;Japanisch A1.1;Sprachkurs;true;false;true;1.0;3.0;#FFCCCB
-Semester 1;Russisch A1;Sprachkurs;true;false;true;1.0;5.0;#FFCCCB
-Semester 2;Smart Shopping Assistant;Projektgruppe;false;true;false;;25.0;#FFBA99
-Semester 2;Graphische Datenverarbeitung;Basismodul;false;false;true;1.7;8.0;#CDFFFE
-Semester 2;Replicability of Research Artifacts;Seminar;false;false;true;1.0;4.0;#FFBA99
-Semester 2;Computer Animation;Vertiefungsmodul;false;false;true;1.0;6.0;#CDFFFE
-Semester 2;Japanisch A1.2;Sprachkurs;true;false;true;1.0;3.0;#FFCCCB
-Semester 3;MGSE;Basismodul;false;false;true;;8.0;#CDFFFE
-Semester 3;AIDBMS;Basismodul;false;false;true;;8.0;#CDFFFE
-Semester 3;Aktuelle Themen der GDV;Seminar;false;false;true;;4.0;#FFBA99
-Semester 3;Japanisch A2;Sprachkurs;true;false;true;;3.0;#FFCCCB
-Semester 3;Russisch A2;Sprachkurs;true;false;true;1.7;5.0;#FFCCCB
-Semester 4;;Masterarbeit;false;false;true;;15.0;#BBCDFF
+SoSe 2021;Industrial Data Science 2;Vertiefungsmodul;false;false;true;2.0;6.0;#CDFFFE
+SoSe 2021;Verlässliche Systemsoftware;Vertiefungsmodul;false;false;true;1.0;6.0;#CDFFFE
+SoSe 2021;Japanisch A1.1;Sprachkurs;true;false;true;1.0;3.0;#FFCCCB
+SoSe 2021;Russisch A1;Sprachkurs;true;false;true;1.0;5.0;#FFCCCB
+WiSe 2021;Smart Shopping Assistant;Projektgruppe;false;true;false;;25.0;#FFBA99
+WiSe 2021;Graphische Datenverarbeitung;Basismodul;false;false;true;1.7;8.0;#CDFFFE
+WiSe 2021;Replicability of Research Artifacts;Seminar;false;false;true;1.0;4.0;#FFBA99
+WiSe 2021;Computer Animation;Vertiefungsmodul;false;false;true;1.0;6.0;#CDFFFE
+WiSe 2021;Japanisch A1.2;Sprachkurs;true;false;true;1.0;3.0;#FFCCCB
+SoSe 2022;MGSE;Basismodul;false;false;true;;8.0;#CDFFFE
+SoSe 2022;AIDBMS;Basismodul;false;false;true;;8.0;#CDFFFE
+SoSe 2022;Aktuelle Themen der GDV;Seminar;false;false;true;;4.0;#FFBA99
+SoSe 2022;Japanisch A2;Sprachkurs;true;false;true;;3.0;#FFCCCB
+SoSe 2022;Russisch A2;Sprachkurs;true;false;true;1.7;5.0;#FFCCCB
+WiSe 2022;;Masterarbeit;false;false;true;;30.0;#BBCDFF
