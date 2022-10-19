@@ -14,7 +14,7 @@ List<Semester> semesters = ReadInput(data);
 
 // Determine final output size
 int targetWidth = semesters.Count * SEMESTER_WIDTH;
-int targetHeight = semesters.Max(m => m.Modules.Count) * MODULE_HEIGHT + MODULE_HEIGHT;
+int targetHeight = (1+semesters.Max(m => m.Modules.Count)) * MODULE_HEIGHT + MODULE_HEIGHT;
 
 using (Bitmap newImage = new(targetWidth, targetHeight))
 {
